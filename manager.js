@@ -32,7 +32,8 @@ function updateParticles(spectrum) {
     let x2 = map(i + 10, 0, binCount, 0, width) // add an offset to x2
     let y2 = height / 4
     particles[i].drawcircle(x2, y2)
-    particles[i].drawimg()
+
+    particles[i].drawnote()
   })
 }
 

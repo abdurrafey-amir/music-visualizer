@@ -1,9 +1,5 @@
 let fft
 
-let img
-function preload() {
-    img = loadImage('music.png')
-}
 
 let Particle = function (position) {
     console.log('called')
@@ -20,11 +16,17 @@ let Particle = function (position) {
         rect(this.position.x, this.position.y, this.diameter, this.diameter)
         fill(this.color)
     }
-    this.drawimg = function() {
-        background(0, 0, 0, 0)
-        image(img, this.position.x, this.position.y, this.diameter, this.diameter)
-        
+    // draw a music note
+    this.drawnote = function() {
+        push()
+        translate(this.position.x, this.position.y)
+        rotate(frameCount * 0.02)
+        textSize(this.diameter * 2.25)
+        fill(this.color)
+        text('♪', 0, 0)
+        pop()
     }
+    
     this.update = function (energy) {
         this.diameter = random(5, 7) + energy * 100
         this.position.y += this.speed.y * energy * 10
