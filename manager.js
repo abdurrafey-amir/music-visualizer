@@ -22,7 +22,17 @@ function updateParticles(spectrum) {
   spectrum.forEach((bin, i) => {
     let binLevel = map(bin, 0, 255, 0, 1)
     particles[i].update(binLevel)
-    particles[i].draw()
+    
+    // rect
+    let x1 = map(i, 0, binCount, 0, width)
+    let y1 = height / 2
+    particles[i].drawrect(x1, y1)
+   
+    // circle
+    let x2 = map(i + 10, 0, binCount, 0, width) // add an offset to x2
+    let y2 = height / 4
+    particles[i].drawcircle(x2, y2)
+    particles[i].drawimg()
   })
 }
 

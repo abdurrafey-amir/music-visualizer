@@ -1,14 +1,29 @@
 let fft
 
+let img
+function preload() {
+    img = loadImage('music.png')
+}
+
 let Particle = function (position) {
     console.log('called')
     this.position = position
-    this.speed = createVector(0, 1)
+    this.speed = createVector(0, 2)
     this.color = [random(0, 255), random(0, 255), random(0, 255)]
 
-    this.draw = function() {
+    this.drawcircle = function() {
+       
         circle(this.position.x, this.position.y, this.diameter)
         fill(this.color)
+    }
+    this.drawrect = function() {
+        rect(this.position.x, this.position.y, this.diameter, this.diameter)
+        fill(this.color)
+    }
+    this.drawimg = function() {
+        background(0, 0, 0, 0)
+        image(img, this.position.x, this.position.y, this.diameter, this.diameter)
+        
     }
     this.update = function (energy) {
         this.diameter = random(5, 7) + energy * 100
@@ -36,5 +51,5 @@ function draw() {
     background(0, 0, 0)
     let spectrum = fft.analyze()
     updateParticles(spectrum)
-
+   
 }
